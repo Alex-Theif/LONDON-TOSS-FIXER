@@ -40,9 +40,28 @@ src="https://www.facebook.com/tr?id=1002754858640651&ev=PageView&noscript=1"
            <h4 class="lasthead">⚡63/64 World Cup Toss Pass⚡</h4>
            <h4 class="lasthead">⚡58/61 Big Bash League Toss Pass⚡</h4>
            
-           <a href="https://t.me/+T-VG440-rhE5MzU1"><button class="btn" id="blinking-button">JOIN THE CHANNEL NOW</button></a>
+             <button class="btn" id="blinking-button">JOIN THE CHANNEL NOW</button>
         </div>
     </div>
+
+
+     <script>
+  document.getElementById('blinking-button').addEventListener('click', function() {
+    // Generate unique event ID using timestamp + random number
+    var eventID = 'subscribe_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+
+    // Track with Meta Pixel and include eventID
+    fbq('track', 'Subscribe', {}, { eventID: eventID });
+
+    // Optional: log it for debugging
+    // console.log("Meta Subscribe Event ID:", eventID);
+
+    // Delay redirect to give Meta time
+    setTimeout(function() {
+      window.location.href = "https://t.me/+T-VG440-rhE5MzU1";
+    }, 200);
+  });
+</script>
 
 
 <!--     <script>
