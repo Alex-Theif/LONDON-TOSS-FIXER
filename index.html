@@ -16,11 +16,11 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '1002754858640651');
+fbq('init', '974084424237908');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1002754858640651&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=974084424237908&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
 
@@ -45,53 +45,30 @@ src="https://www.facebook.com/tr?id=1002754858640651&ev=PageView&noscript=1"
     </div>
 
 
-     <script>
-  document.getElementById('blinking-button').addEventListener('click', function() {
-    // Generate unique event ID using timestamp + random number
-    var eventID = 'subscribe_' + Date.now() + '_' + Math.floor(Math.random() * 10000);
+   <script>
+    // Prevent duplicate firing using a session flag
+    const pixelEventKey = 'subscribe_event_fired';
 
-    // Track with Meta Pixel and include eventID
-    fbq('track', 'Subscribe', {}, { eventID: eventID });
+    document.getElementById('blinking-button').addEventListener('click', function () {
+        if (!sessionStorage.getItem(pixelEventKey)) {
+            // Generate a unique event ID
+            const eventId = 'subscribe_' + Date.now() + '_' + Math.floor(Math.random() * 100000);
 
-    // Optional: log it for debugging
-    // console.log("Meta Subscribe Event ID:", eventID);
+            // Fire the Meta Pixel event with unique ID
+            fbq('track', 'Subscribe', {}, { eventID: eventId });
 
-    // Delay redirect to give Meta time
-    setTimeout(function() {
-      window.location.href = "https://t.me/+T-VG440-rhE5MzU1";
-    }, 200);
-  });
+            // Mark this session as fired
+            sessionStorage.setItem(pixelEventKey, 'true');
+
+            // Redirect after short delay
+            setTimeout(function () {
+                window.location.href = "https://t.me/+T-VG440-rhE5MzU1";
+            }, 200);
+        } else {
+            // Already fired, just redirect
+            window.location.href = "https://t.me/+T-VG440-rhE5MzU1";
+        }
+    });
 </script>
-
-
-<!--     <script>
-        var timer = document.querySelector('.time');
-        var bt = document.querySelector('.btn')
-        var tx = document.querySelector('.txt')
-
-        var count = timer.innerText;
-        function set(){
-
-               var sec =  setInterval(() => {
-                if(count == 0) return stopsec()
-                    count--;
-                    timer.innerText = count;
-                }, 1000);
-
-                
-                function stopsec(){
-                clearInterval(sec);
-                timer.style.visibility = "hidden";
-                tx.style.visibility = "hidden";
-            } 
-        }
-        function redirect(){
-            window.location = "https://t.me/+T-VG440-rhE5MzU1";
-        }
-
-        setTimeout('redirect()',30000);
-        set();
-    
-    </script> -->
 </body>
 </html>
